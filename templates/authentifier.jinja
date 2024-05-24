@@ -1,0 +1,76 @@
+{% extends "_maquette.jinja" %}
+
+{% block contenu %}
+    <header>
+        <h1>{{ identifiant }}</h1>
+    </header>
+
+    <main>
+
+        {% if confirmation is not none %}
+            {% if confirmation %}
+                <p class="confirmation">Votre Compte est créé!. Veuillez se connecter.</p>
+            {% else %}
+                <p class="alert-danger p-2">Le courriel ou le mot de passe est incorrect</p>
+            {% endif %}
+        {% endif %}
+
+        <div class="w-50 divForm d-flex flex-column align-items-center text-center">
+            <h2>
+                Se connecter
+            </h2>
+            <form class="w-100 d-flex flex-column align-items-center text-center" method="post">
+
+
+                <div class="text-start w-50">
+                    <label for="courriel">Saisissez votre adresse: </label>
+                    <input type="text"
+                           id="courriel"
+                           name="courriel"
+                           placeholder="Email"
+                           required
+                           class="w-100 form-control"
+                            {% if courriel is not none %}
+                           value="{{ courriel }}"
+                            {% endif %}
+                    >
+
+                </div>
+
+
+
+
+                <div class="text-start w-50">
+                    <label for="mdp">Saisissez votre mot de passe</label>
+                    <input type="password"
+                           id="mdp"
+                           name="mdp"
+                           placeholder="Mot de passe"
+                           class="w-100 form-control"
+                           required
+                            {#                   {% if mdp is not none %}#}
+                            {#                        value="{{ mdp }}"#}
+                            {#                    {% endif %}#}
+                    >
+
+
+                </div>
+
+
+
+
+
+
+                <input type="submit" value="Créer" class="mt-3 w-25">
+
+            </form>
+
+            {% if message %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endif %}
+
+        </div>
+
+
+    </main>
+{% endblock %}

@@ -1,0 +1,176 @@
+@import "bootstrap"
+
+body
+  @extend .container
+
+header
+  @extend .pt-1, .pb-3
+
+  h1
+    @extend .display-5
+
+  p
+    @extend .lead
+
+nav, main, footer
+  @extend .pb-5
+
+.widthImage
+  width: 30%
+
+.widthDescription
+  width: 70%
+
+form
+  @extend .col-sm-8, .col-md-6, .col-lg-4
+
+  > div
+    @extend .py-2
+
+  label
+    @extend .form-label
+
+  input
+    @extend .form-control
+
+  button[type="submit"]
+    @extend .btn, .btn-primary
+
+  button:not(button[type="submit"])
+    @extend .btn, .btn-secondary
+
+
+.row .card-body span
+  @extend .fw-bold
+
+.btn-button
+  background-color: #0dbf92
+
+
+#divSuggestions ul
+  list-style: none
+  padding: 0
+  margin: 0
+  background: white
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1)
+  position: absolute
+  width: 300px
+  /* Ajustez selon la largeur de votre champ de saisie */
+  z-index: 1000
+/* Assurez-vous qu'il est bien visible par-dessus les autres éléments */
+
+
+#divSuggestions li a
+  display: block
+  padding: 8px
+  text-decoration: none
+  color: black
+
+
+#divSuggestions li a:hover
+  background-color: #f0f0f0
+
+.suggestions
+  color: black
+  background-color: red
+
+
+#recherchesRecentes div
+  cursor: pointer
+  padding: 5px
+  margin: 5px
+  background-color: #f0f0f0
+
+
+#recherchesRecentes div:hover
+  background-color: #e0e0e0
+
+.suggestion-link
+  color: #000000
+  /* Couleur du lien */
+  text-decoration: none
+  /* Supprimer la soulignement par défaut */
+
+  padding: 5px
+
+
+.suggestion-link:hover
+  text-decoration: underline
+  /* Ajouter un soulignement lors du survol */
+  font-weight: 900
+
+.suggestion-item
+  border: 1px solid black
+  padding: 10px
+  list-style: none
+
+.suggestions-list
+  padding: 10px
+
+.card-container .card
+  width: 100%
+  height: 400px
+
+
+.card-container img.card-img-top
+  object-fit: cover
+// Assure que les images remplissent l'espace sans être déformées
+
+
+.card-container .col-3
+  width: 18rem
+// Largeur uniforme pour les colonnes
+
+
+.divForm
+  background: #333
+  padding: 20px
+  border-radius: 10px
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5)
+  width: 300px
+  color: white
+  margin: 0 auto
+
+  input, label
+    display: block
+    width: 100%
+    margin-bottom: 10px
+
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"], input[type="email"]
+    padding: 10px
+    border: none
+    border-radius: 5px
+    margin-top: 5px
+
+    &:focus
+      outline: 0
+      border-bottom: 2px solid #777
+  // Fixed to include a property
+
+
+
+  input[type="submit"]
+    background: #4CAF50
+    color: white
+    border: none
+    padding: 10px
+    border-radius: 5px
+    cursor: pointer
+
+    &:hover
+      background: #45a049
+
+
+  .alert
+    padding: 15px
+    background-color: #f44336
+    /* Red */
+    color: white
+    margin-bottom: 15px
+    border-radius: 5px
+
+
+

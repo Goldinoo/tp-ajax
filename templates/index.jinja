@@ -1,0 +1,123 @@
+{% extends "_maquette.jinja" %}
+
+{% block scripts %}
+    <script defer="defer"
+            src="/static/js/script.js"></script>
+
+    <script defer="defer"
+            src="/static/js/utils-ajax.js"></script>
+{% endblock %}
+
+
+{% block contenu %}
+    <header>
+        {% if message %}
+            <h1>{{ message }}</h1>
+{#            <button id="precedent" onclick="pagePrecedente(document.getElementById('recherche').value)">Précédent</button>#}
+{#            <button id="suivant" onclick="pageSuivante(document.getElementById('recherche').value)">Suivant</button>#}
+        {% else %}
+{#            <button id="precedent" onclick="pagePrecedente(document.getElementById('recherche').value)">Précédent</button>#}
+{#            <button id="suivant" onclick="pageSuivante(document.getElementById('recherche').value)">Suivant</button>#}
+            <h1>Bienvenue {{ nom }}</h1>
+
+
+
+
+        {% endif %}
+
+    </header>
+
+
+
+
+    <main>
+        <div class="">
+
+            <form onsubmit="return effectuerRecherche()" method="get" class=" text-end">
+                <input type="text" id="recherche" name="mots-cles" placeholder="Cherchez ici...">
+                <input type="submit" value="Chercher">
+            </form>
+            {#            <button onclick="rechercherClic()">Chercher</button>#}
+            <div id="suggestions" style=" background: white; width: 200px;"></div>
+            <div id="recherchesRecentes"></div>
+
+
+            <div id="divSuggestions"
+                 style="display: none; z-index: 1000; width: 100%; color: #0dbf92;">
+                <!-- Les suggestions seront ajoutées ici -->
+
+            </div>
+        </div>
+
+
+        {% if authentifie %}
+            <div class="text-end mt-2">
+                <a class="btn btn-primary" href="/compte/achats/{{ session["identifiant"] }}">Mes achats</a>
+            </div>
+        {% endif %}
+
+        <div class="row " id="liste-produits">
+            {% if session.nom %}
+                <h1> {{ session.nom }}</h1>
+            {% endif %}
+
+            {% if resultats %}
+
+                <div class="col-lg-3 col-md-1 ">
+                {% for item in resultats %}
+
+                    <div class="col-3 mt-2">
+                        <div class="card rounded-3" style="width: 18rem;">
+                            {#                            <img src="../static/images/produits/product.jpg" class="w-100 card-img-top"#}
+                            {#                                 alt="...">#}
+                            {% if produit.image %}
+                                <img class="w-100 h-75 card-img-top border-2 rounded-2"
+                                     src="{{ url_for('produit.serve_image', filename=produit.image) }}"
+                                     alt="image pour: {{ produit.titre }}" id="productImage">
+                            {% else %}
+                                <img class="w-100 h-75 card-img-top border-2 rounded-2"
+                                     src="{{ url_for('static', filename='product.jpg') }}"
+                                     alt="Image par défaut" id="productImage">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title mb-2">{{ item.titre }}</h5>
+                                <div class="d-flex justify-content-between mt-5">
+                                    <a href="/produit/{{ item.id_produit }}" type="button" class="btn btn-primary">Plus
+                                        de détail</a>
+                                    <h5 class="text-info"><strong>{{ item.prix }}$</strong></h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% else %}
+                {% for produit in produits %}
+                    <div class="col-lg-3 col-md-1">
+                        <div class="card rounded-3" style="width: 18rem;">
+                            <img src="../static/images/produits/product.jpg" class="w-100 card-img-top"
+                                 alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title mb-2">{{ produit.titre }}</h5>
+                                <div class="d-flex justify-content-between mt-5">
+                                    <a href="/produit/{{ produit.id_produit }}" type="button" class="btn btn-primary">Plus
+                                        de détail</a>
+                                    <h5 class="text-info"><strong>{{ produit.prix }}$</strong></h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+{% endblock %}
